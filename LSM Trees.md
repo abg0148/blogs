@@ -14,6 +14,28 @@ Modern databases like RocksDB, Cassandra, and newer ANN systems like FreshDiskAN
 
 ---
 
+## 🧐 What Is a MemTable?
+
+A **MemTable** is:
+
+* A **mutable, sorted in-memory** data structure.
+* Used to **temporarily store writes** before they are flushed to disk as an immutable file (SSTable).
+* Paired with a **Write-Ahead Log (WAL)** to ensure durability.
+
+### 🏋️ What Does It Look Like?
+
+#### 🔹 Common Implementations:
+
+| Data Structure                  | Why Used                                    |
+| ------------------------------- | ------------------------------------------- |
+| **Skip List**                   | Sorted, fast inserts/search, easy to merge  |
+| **Red-Black Tree / AVL Tree**   | Balanced BST for ordered data               |
+| **Hash Map** (for unsorted use) | Fast inserts, not used when order is needed |
+
+Most LSM-based systems (e.g., LevelDB, RocksDB) use a **Skip List** due to its balance of **sorted order** and **cache-friendliness**.
+
+---
+
 ## 🧱 Core Components of an LSM Tree
 
 | Component                 | Description                                        |
